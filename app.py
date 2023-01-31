@@ -7,7 +7,7 @@ from urllib.request import urlopen as uReq
 app = Flask(__name__)
 
 @app.route('/',methods=['GET'])  # route to display the home page
-@cross_origin()
+@cross_origin() # it is not required for local system when you are deployed this app it required
 def homePage():
     return render_template("index.html")
 
@@ -17,7 +17,7 @@ def index():
     if request.method == 'POST':
         try:
             searchString = request.form['content'].replace(" ","")
-            flipkart_url = "https://www.flipkart.com/search?q=" + searchString
+            flipkart_url = "https://www.flipkart.com/search?q=" + searchString  #append that one in main url
             uClient = uReq(flipkart_url)
             flipkartPage = uClient.read()
             uClient.close()
